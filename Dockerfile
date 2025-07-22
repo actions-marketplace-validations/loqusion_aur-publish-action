@@ -2,6 +2,7 @@ FROM archlinux/archlinux:base
 
 RUN pacman --needed --noconfirm -Syu \
     awk \
+    base-devel \
     binutils \
     bzip2 \
     coreutils \

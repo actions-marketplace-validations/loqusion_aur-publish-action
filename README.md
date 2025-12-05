@@ -1,5 +1,10 @@
 # AUR Publish
 
+Publish a package to the Arch User Repository (AUR) on GitHub release.
+
+In total, this action will clone the AUR package repository, update the `PKGBUILD`/`.SRCINFO`,
+verify build, and push to AUR.
+
 ## Inputs
 
 | Name                | Description                                           | Default                              |
@@ -29,7 +34,8 @@ jobs:
     runs-on: ubuntu-latest
     environment: AUR
     steps:
-      - uses: loqusion/aur-publish-action@v1
+      - uses: actions/checkout@v3
+      - uses: loqusion/aur-publish-action@v2
         with:
           ssh-private-key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
           # the rest are optional
@@ -40,5 +46,6 @@ jobs:
 
 ## Credits
 
-[aur-release-action](https://github.com/0x61nas/aur-release-action)
-[aur-publish-action](https://github.com/zu1k/aur-publish-action)
+- [aur-release-action](https://github.com/0x61nas/aur-release-action)
+- [aur-publish-action](https://github.com/zu1k/aur-publish-action)
+- [github-action-push-to-another-repository](https://github.com/cpina/github-action-push-to-another-repository)

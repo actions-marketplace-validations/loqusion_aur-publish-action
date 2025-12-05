@@ -1,5 +1,5 @@
 name: "Yet Another AUR Publish"
-description: "Publish an AUR package"
+description: "Dead simple AUR publisher"
 author: loqusion
 branding:
   color: blue
@@ -21,8 +21,8 @@ inputs:
 runs:
   using: "docker"
   image: "Dockerfile"
-  args:
-    - ${{ inputs.package-name }}
-    - ${{ inputs.commit-username }}
-    - ${{ inputs.commit-email }}
-    - ${{ inputs.ssh-private-key }}
+  env:
+    INPUT_SSH_PRIVATE_KEY: ${{ inputs.ssh-private-key }}
+    INPUT_PACKAGE_NAME: ${{ inputs.package-name }}
+    INPUT_GIT_USERNAME: ${{ inputs.git-username }}
+    INPUT_GIT_EMAIL: ${{ inputs.git-email }}

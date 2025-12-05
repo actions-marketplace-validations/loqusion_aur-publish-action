@@ -2,6 +2,7 @@ FROM archlinux/archlinux:base
 
 RUN pacman --needed --noconfirm -Syu \
     awk \
+    base-devel \
     binutils \
     bzip2 \
     coreutils \
@@ -17,8 +18,15 @@ RUN pacman --needed --noconfirm -Syu \
     libarchive \
     ncurses \
     openssh \
+    pacman-contrib \
     sed \
+    sudo \
     xz
+
+RUN useradd -m builder && \
+    echo "builder ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers && \
+    echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers && \
+    usermod -a -G wheel builder
 
 COPY ssh_config /ssh_config
 COPY entrypoint.sh /entrypoint.sh
